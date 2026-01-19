@@ -99,7 +99,7 @@ module nft::devnet_nftTests {
         // create the NFT
         let scenario = ts::begin(addr1);
         {
-            devnet_nft::mint(b"test", b"a test", b"https://www.sui.io", ts::ctx(&mut scenario))
+            devnet_nft::mint(b"6 7", b"a 6 7", b"https://media.tenor.com/09abXC7J0xAAAAAj/6-6-7.gif", ts::ctx(&mut scenario))
         };
         // send it from A to B
         ts::next_tx(&mut scenario, addr1);
@@ -111,8 +111,8 @@ module nft::devnet_nftTests {
         ts::next_tx(&mut scenario, addr2);
         {
             let nft = ts::take_from_sender<DevNetNFT>(&scenario);
-            devnet_nft::update_description(&mut nft, b"a new description") ;
-            assert!(*string::bytes(devnet_nft::description(&nft)) == b"a new description", 0);
+            devnet_nft::update_description(&mut nft, b"6 7 BOIII") ;
+            assert!(*string::bytes(devnet_nft::description(&nft)) == b"BOIII 6 7", 0);
             ts::return_to_sender(&scenario, nft);
         };
         // burn it
